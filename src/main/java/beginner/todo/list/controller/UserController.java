@@ -26,7 +26,12 @@ public class UserController {
     @PostMapping
     public User addUser(@RequestBody User newUser) {
         if (newUser.getHabits().size() > 0)
-            newUser.getHabits().forEach(habit -> habit.setUser(newUser));
+            newUser.getHabits().forEach(habit -> {
+                habit.setUser(newUser);
+
+                if (habit.getCompletions() != null)
+                    habit.getCompletions().forEach(completion -> completion.setHabit(habit));
+            });
 
         return userRepository.save(newUser);
     }
