@@ -67,6 +67,8 @@ Spring Boot is a **Java framework** that simplifies web application development 
 - `@GetMapping` → maps HTTP GET requests.  
 - `@Autowired` → injects dependencies automatically.
 
+---
+
 ### 🚀 APIs in Spring Boot
 - Build **RESTful APIs** using HTTP methods (GET, POST, PUT, DELETE) and JSON.  
 
@@ -91,6 +93,60 @@ API = waiter 🧑‍🍳
 Frontend = customer 🍽️  
 
 The waiter (API) takes the order, passes it to the kitchen, and serves the meal in the right format.
+
+---
+
+### 🧩 MVC Architecture in Spring Boot
+**MVC** stands for **Model–View–Controller**, a design pattern that separates application logic into three layers:
+- **Model** → represents data and business logic (e.g., entities, services).  
+- **View** → defines how data is displayed to the user (e.g., HTML pages with Thymeleaf).  
+- **Controller** → handles HTTP requests and responses, connecting the Model and View.
+
+**Why MVC?**
+- Keeps code organized and modular.  
+- Simplifies testing and maintenance.  
+- Enables clean separation between backend logic and frontend presentation.
+
+**Example:**
+```java
+@Controller
+public class HomeController {
+    @GetMapping("/hello")
+    public String hello(Model model) {
+        model.addAttribute("message", "Hello, Thymeleaf!");
+        return "hello"; // corresponds to hello.html in templates folder
+    }
+}
+```
+
+---
+
+### 🧾 Thymeleaf Templates
+**Thymeleaf** is a **server-side Java template engine** integrated with Spring Boot.  
+It allows you to create **dynamic HTML pages** using variables and loops inside standard HTML.
+
+**Features:**
+- Natural templates → valid HTML files even before rendering.  
+- Tight Spring integration → easy access to model attributes.  
+- Supports conditions, loops, links, forms, and fragments.
+
+**Example: `hello.html`**
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello Page</title>
+</head>
+<body>
+    <h1 th:text="${message}">Default Message</h1>
+</body>
+</html>
+```
+
+**How It Works:**
+1. Controller adds data to a `Model`.  
+2. Thymeleaf template renders HTML using that data.  
+3. Browser displays the generated page.
 
 ---
 
@@ -159,6 +215,8 @@ Spring Boot è un **framework Java** che semplifica lo sviluppo di applicazioni 
 - `@GetMapping` → mappa richieste HTTP GET.  
 - `@Autowired` → inietta dipendenze automaticamente.
 
+---
+
 ### 🚀 API in Spring Boot
 - Costruzione di **API RESTful** con metodi HTTP (GET, POST, PUT, DELETE) e JSON.
 
@@ -183,3 +241,57 @@ API = cameriere 🧑‍🍳
 Frontend = cliente 🍽️  
 
 Il cameriere (API) prende l’ordine, lo porta in cucina e serve il piatto nel formato giusto.
+
+---
+
+### 🧩 Architettura MVC in Spring Boot
+**MVC** significa **Model–View–Controller**, un modello architetturale che separa la logica dell’applicazione in tre parti:
+- **Model** → rappresenta i dati e la logica di business (es. entità, servizi).  
+- **View** → definisce come i dati vengono mostrati (es. pagine HTML con Thymeleaf).  
+- **Controller** → gestisce le richieste HTTP e collega Model e View.
+
+**Perché usare MVC?**
+- Mantiene il codice ordinato e modulare.  
+- Facilita test e manutenzione.  
+- Separa chiaramente logica backend e presentazione frontend.
+
+**Esempio:**
+```java
+@Controller
+public class HomeController {
+    @GetMapping("/hello")
+    public String hello(Model model) {
+        model.addAttribute("message", "Ciao, Thymeleaf!");
+        return "hello"; // corrisponde a hello.html nella cartella templates
+    }
+}
+```
+
+---
+
+### 🧾 Template Thymeleaf
+**Thymeleaf** è un **motore di template lato server per Java** integrato con Spring Boot.  
+Permette di creare **pagine HTML dinamiche** usando variabili e cicli all’interno di HTML standard.
+
+**Caratteristiche:**
+- Template naturali → file HTML validi anche prima del rendering.  
+- Integrazione nativa con Spring → accesso diretto agli attributi del modello.  
+- Supporta condizioni, cicli, link, form e frammenti.
+
+**Esempio: `hello.html`**
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pagina di Benvenuto</title>
+</head>
+<body>
+    <h1 th:text="${message}">Messaggio di default</h1>
+</body>
+</html>
+```
+
+**Come funziona:**
+1. Il Controller aggiunge dati a un `Model`.  
+2. Thymeleaf genera HTML usando quei dati.  
+3. Il browser mostra la pagina risultante.
