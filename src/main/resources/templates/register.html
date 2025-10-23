@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form th:action="@{/web/register}" th:object="${user}" method="post">
+        <h2>Registration form</h2>
+
+        <input type="text" th:field="*{username}" placeholder="Username" required />
+        <input type="email" th:field="*{email}" placeholder="Email" required />
+        <button type="submit">Register</button>
+
+        <div class="message" th:text="${message}"></div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <form id="registerForm">
+        <h2>Register user</h2>
+        <input type="text" id="username" placeholder="Username" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <button type="submit">Register</button>
+
+        <div id="message"></div>
+    </form>
+</body>
+
+<script>
+    const form = document.getElementById("registerForm");
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const user = {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            habits: []
+        };
+
+        const response = await fetch("/users", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        });
+
+        const messageEl = document.getElementById("message");
+        if (response.ok) {
+            messageEl.textContent = "User added successfully!";
+            messageEl.style.color = 'green';
+        } else {
+            messageEl.textContent = 'Error adding user!';
+            messageEl.style.color = 'red';
+        }
+    });
+</script>
+</html>
